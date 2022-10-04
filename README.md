@@ -23,7 +23,8 @@ This is simple school library application with OOP concept. It keeps track of bo
 GitHub: [Ney2](https://github.com/Ney2)
 Twitter: [@GutaKidist](https://twitter.com/GutaKidist)
 Linkedin: [Kidist Dinku](https://www.linkedin.com/in/kidist-guta/)
-Show your support
+
+### Show your support
 Give a ⭐️ if you like this project!
 
 ### 🤝 Contributing
