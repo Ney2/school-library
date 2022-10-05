@@ -1,4 +1,6 @@
 require './nameable'
+require './capitalize'
+require './trimmer'
 
 class Person < Nameable
   def initialize(age, name = 'Unknown', parent_permission: true)
@@ -29,3 +31,9 @@ end
 
 person = Person.new(18, 'maximilianus')
 puts person.correct_name
+
+capitalize = CapitalizeDecorator.new(person)
+puts capitalize.correct_name
+
+capitalizedTrimmedPerson = TrimmerDecorator.new(capitalize)
+puts capitalizedTrimmedPerson.correct_name

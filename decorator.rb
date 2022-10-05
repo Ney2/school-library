@@ -3,7 +3,7 @@ require './Nameable'
 class Decorator < Nameable
   attr_accessor :nameable
 
-  def initalalize(nameable)
+  def initialize(nameable)
     super()
     @nameable = nameable
   end
