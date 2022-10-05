@@ -35,5 +35,5 @@ puts person.correct_name
 capitalize = CapitalizeDecorator.new(person)
 puts capitalize.correct_name
 
-capitalizedTrimmedPerson = TrimmerDecorator.new(capitalize)
-puts capitalizedTrimmedPerson.correct_name
+trimmed = TrimmerDecorator.new(capitalize)
+puts trimmed.correct_name
