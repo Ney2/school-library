@@ -9,7 +9,7 @@ class RentalModule
     @persons = params[:persons]
     @rentals = params[:rentals]
   end
-  
+
   # rubocop:disable Metrics/MethodLength
   def create_rental
     puts ' Select a Book from the list below by the number'
