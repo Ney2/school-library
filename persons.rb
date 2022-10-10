@@ -32,4 +32,4 @@ class Person < Nameable
   private :of_age?
 end
 
-binding.
+binding.pry
