@@ -18,6 +18,7 @@ This is simple school library application with OOP concept. It keeps track of bo
  That's it! You can play with it as you wish 😄
 
 ### Authors
+
 👤 Kidist Dinku
 
 - GitHub: [Ney2](https://github.com/Ney2)
