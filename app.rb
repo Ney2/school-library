@@ -8,7 +8,7 @@ class App
   def initialize
     @option = 0
     @persons = []
-    @students =[]
+    @students = []
     @teachers = []
     @rentals = []
     @books = []

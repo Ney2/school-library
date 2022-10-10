@@ -17,12 +17,18 @@ This is simple school library application with OOP concept. It keeps track of bo
   4. Run the code
  That's it! You can play with it as you wish 😄
 
-### Author
+### Authors
 👤 Kidist Dinku
 
 - GitHub: [Ney2](https://github.com/Ney2)
 - Twitter: [@GutaKidist](https://twitter.com/GutaKidist)
 - Linkedin: [Kidist Dinku](https://www.linkedin.com/in/kidist-guta/)
+
+👤 Angom Chittaranjan
+
+- GitHub: [@AngomRanjan](https://github.com/AngomRanjan)
+- Twitter: [@RanjanAngom](https://twitter.com/RanjanAngom)
+- LinkedIn: [angom-chittaranjan](https://linkedin.com/in/angom-chittaranjan)
 
 ### Show your support
 Give a ⭐️ if you like this project!

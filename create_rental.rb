@@ -10,36 +10,34 @@ class RentalModule
     @rentals = params[:rentals]
   end
 
+  # rubocop:disable Metrics/MethodLength
   def create_rental
     puts ' Select a Book from the list below by the number'
     if @books.empty?
-        puts 'No available books'
-        return
-      end
-      @books.each_with_index do |book, index|
-        puts " #{index + 1} - Title: \"#{book.title}\", Author: #{book.author}"
-      end
-      puts '-----------------------------'
-    print ' Enter book number : '
+      puts 'No available books'
+      return
+    end
+    @books.each_with_index do |book, index|
+      puts " #{index + 1} - Title: \"#{book.title}\", Author: #{book.author}"
+    end
+    print "-----------------------------\nEnter book number : "
     book_number = gets.chomp
     puts 'Select a Person from the list below by the number'
     if @persons.empty?
-        puts 'No person available'
-        return
-      end
-      @persons.each_with_index do |person, index|
-        puts "#{index + 1} - [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
-      end
-      puts '-----------------------------'
+      puts 'No person available'
+      return
+    end
+    @persons.each_with_index do |person, index|
+      puts "#{index + 1} - [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+    end
     person_number = gets.chomp
     print ' Enter the Date e.g (2022/10/08) : '
     date = conver_date(gets)
-
     rent = Rental.new(date, books[book_number.to_i - 1], persons[person_number.to_i - 1])
     @rentals << rent unless @rentals.include?(rent)
-    puts 'Rental Created'
-    puts '-----------------------------'
+    print "Rental Created\n-----------------------------"
   end
+  # rubocop:enable Metrics/MethodLength
 
   def rent_list_by_id
     puts 'Rental list by ID'
