@@ -1,4 +1,5 @@
 require './nameable'
+require 'pry'
 
 class Person < Nameable
   attr_reader :id, :rentals
@@ -30,3 +31,5 @@ class Person < Nameable
   end
   private :of_age?
 end
+
+binding.pry
