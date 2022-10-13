@@ -29,6 +29,7 @@ class PersonModule
     end
   end
 
+  # rubocop:disable Metrics/MethodLength
   def create_student
     file = File.open(@file_location, 'w')
     puts 'Enter student\'s name: '
@@ -62,6 +63,7 @@ class PersonModule
     puts
   end
 
+  # rubocop:enable Metrics/MethodLength
   def create_teacher
     file = File.open(@file_location, 'w')
     puts 'Enter teacher\'s name: '

@@ -12,6 +12,7 @@ class RentalModule
     file.close
   end
 
+  # rubocop:disable Metrics/MethodLength
   def create_rental
     file = File.open(@file_location, 'w')
     if @books.empty? == false || @persons.empty? == false
@@ -43,13 +44,16 @@ class RentalModule
       puts
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   def rent_list_by_id
     puts 'Enter person ID: '
     person_id = gets.chomp.to_i
     puts 'Rentals:'
     @rentals.each do |rental|
-      puts "Date: #{rental['date']}, Book \"#{rental['book']['title']}\" by #{rental['book']['author']}" if rental['person']['id'] == person_id
+      if rental['person']['id'] == person_id
+        puts "Date: #{rental['date']}, Book \"#{rental['book']['title']}\" by #{rental['book']['author']}"
+      end
     end
     puts 'No rentals found' if @rentals.none? { |rental| rental['person']['id'] == person_id }
   end
