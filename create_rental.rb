@@ -1,64 +1,56 @@
 require './rental'
-require 'date'
 
 class RentalModule
-  attr_accessor :rentals, :books, :persons
+  attr_accessor :books, :persons, :rentals, :file_location
 
-  def initialize(params)
-    @books = params[:books]
-    @persons = params[:persons]
-    @rentals = params[:rentals]
+  def initialize(books, persons)
+    @file_location = 'storage/rentals.json'
+    @books = books
+    @persons = persons
+    file = File.open(@file_location, 'a+')
+    @rentals = file.size.zero? ? [] : JSON.parse(file.read)
+    file.close
   end
 
-  # rubocop:disable Metrics/MethodLength
   def create_rental
-    puts ' Select a Book from the list below by the number'
-    if @books.empty?
-      puts 'No available books'
-      return
+    file = File.open(@file_location, 'w')
+    if @books.empty? == false || @persons.empty? == false
+      puts 'Select a book from the following list by number'
+      @books.each_with_index { |book, index| puts "#{index}) Title: \"#{book['title']}\", Author: #{book['author']}" }
+
+      book_index = gets.chomp.to_i
+      book_obj = @books[book_index]
+
+      puts 'Select a person from the following list by number'
+      @persons.each_with_index do |person, index|
+        puts "#{index}) [#{person['json_class']}] Name: #{person['name']}, ID: #{person['id']}, Age: #{person['age']}"
+      end
+      person_index = gets.chomp.to_i
+      person_obj = @persons[person_index]
+
+      puts 'Enter date: '
+      date = gets.chomp
+
+      rental = Rental.new(date, person_obj, book_obj)
+      rental = rental.to_json
+      @rentals << rental
+      file.write(JSON[@rentals])
+      file.close
+      puts "New rental created for #{person_obj['name']}"
+    else
+      puts
+      puts 'No books or persons found. Please create at least one book and person first.'
+      puts
     end
-    @books.each_with_index do |book, index|
-      puts " #{index + 1} - Title: \"#{book.title}\", Author: #{book.author}"
-    end
-    print "-----------------------------\nEnter book number : "
-    book_number = gets.chomp
-    puts 'Select a Person from the list below by the number'
-    if @persons.empty?
-      puts 'No person available'
-      return
-    end
-    @persons.each_with_index do |person, index|
-      puts "#{index + 1} - [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
-    end
-    person_number = gets.chomp
-    print ' Enter the Date e.g (2022/10/08) : '
-    date = conver_date(gets)
-    rent = Rental.new(date, books[book_number.to_i - 1], persons[person_number.to_i - 1])
-    @rentals << rent unless @rentals.include?(rent)
-    print "Rental Created\n-----------------------------"
   end
-  # rubocop:enable Metrics/MethodLength
 
   def rent_list_by_id
-    puts 'Rental list by ID'
-    print 'Enter the person\'s ID :'
-    id = gets.chomp
-    puts 'Rental list'
-    if @rentals.empty?
-      puts 'No rental available'
-    else
-      @rentals.select do |rent|
-        if rent.person.id == id.to_i
-          puts "Date: #{rent.date}, Book '#{rent.book.title}', Author #{rent.book.author}"
-        else
-          puts "#{rent.person.name} has not rent a book"
-        end
-      end
+    puts 'Enter person ID: '
+    person_id = gets.chomp.to_i
+    puts 'Rentals:'
+    @rentals.each do |rental|
+      puts "Date: #{rental['date']}, Book \"#{rental['book']['title']}\" by #{rental['book']['author']}" if rental['person']['id'] == person_id
     end
-    puts '-----------------------------'
-  end
-
-  def conver_date(date)
-    Date.parse(date)
+    puts 'No rentals found' if @rentals.none? { |rental| rental['person']['id'] == person_id }
   end
 end
