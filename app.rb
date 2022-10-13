@@ -6,15 +6,9 @@ class App
   attr_reader :books, :person, :rentals
 
   def initialize
-    @option = 0
-    @persons = []
-    @students = []
-    @teachers = []
-    @rentals = []
-    @books = []
-    @rentals = RentalModule.new({ rentals: @rentals, persons: @persons, books: @books })
-    @persons = PersonModule.new(@persons, @students, @teachers)
-    @books = BooksModule.new(@books)
+    @books = BooksModule.new
+    @persons = PersonModule.new
+    @rentals = RentalModule.new(@books.books, @persons.persons)
   end
 
   def menu_options

@@ -1,8 +1,10 @@
-require './persons'
+require_relative 'persons'
 
 class Student < Person
-  def initialize(classroom, age, name = 'Unkown', parent_permission: true)
-    super(name, age, parent_permission: parent_permission)
+  attr_reader :classroom, :parent_permission
+
+  def initialize(name, age, classroom, _parent_permission)
+    super(name, age, parent_permission: true)
     @classroom = classroom
   end
 
@@ -12,6 +14,17 @@ class Student < Person
 
   def classroom=(classroom)
     @classroom = classroom
-    classroom.student.push(self) unless classroom.student.includes?(self)
+    classroom.students << self unless classroom.students.include?(self)
+  end
+
+  def to_json(*_args)
+    {
+      JSON.create_id => self.class.name,
+      'id' => @id,
+      'age' => @age,
+      'name' => @name,
+      'classroom' => @classroom,
+      'parent_permission' => @parent_permission
+    }
   end
 end
