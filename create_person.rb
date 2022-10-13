@@ -79,7 +79,7 @@ class PersonModule
     puts 'Enter teacher\'s specialization: '
     specialization = gets.chomp
 
-    teacher = Teacher.new(age, name, specialization)
+    teacher = Teacher.new(age, specialization, name)
     teacher = teacher.to_json
     @persons << teacher
     file.write(JSON[@persons])
