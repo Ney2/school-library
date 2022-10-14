@@ -1,5 +1,9 @@
 # School Library
-This is simple school library application with OOP concept. It keeps track of books in a library and who borrwos them.
+This is simple school library application with OOP concept. It keeps track of books in a library and who borrwos them. This app will allow the user to:
+
+- Add new students or teachers.
+- Add new books.
+- Save records of who borrowed a given book and when.
 
 ## Built With
  - Ruby
